@@ -10,6 +10,17 @@ class Clock:
         self.balls = np.arange(numBalls).tolist()
         self.fullCycles = 0
 
+    def check_balls_sequence(self):
+        for i in range(len(self.balls)):
+            if self.balls[i] != i:
+                return False
+        return True
+
+    def cycles_to_time(self):
+        days = int(self.fullCycles / 2)
+        is_half_day = self.fullCycles % 2 != 0
+        return str(days) + " days " + ("and 12 hours" if is_half_day else "")
+
     def tick(self):
         self.line_1.append(self.balls.pop(0))
         if len(self.line_1) == 5:
